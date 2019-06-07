@@ -3,7 +3,8 @@
     <label for="methodUsed">Method Used
         <input id="methodUsed"
                type="text"
-               v-model="methodUsed" />
+               v-model="methodUsed"
+               @input="updateData('Bioburden.methodUsed', methodUsed)" />
     </label>
 
     <div class="star">
@@ -13,14 +14,16 @@
                 value="yes"
                 name="tntcTftcLimit"
                 type="radio"
-                v-model="tntcTftcLimit" />Yes
+                v-model="tntcTftcLimit"
+                @change="toggleTntcTftc" />Yes
       </label>
       <label for="no">
           <input id="no"
                 value="no"
                 name="tntcTftcLimit"
                 type="radio"
-                v-model="tntcTftcLimit" />No
+                v-model="tntcTftcLimit"
+                @change="toggleTntcTftc" />No
       </label>
     </div>
     <div class="tntcTftc"
@@ -28,12 +31,14 @@
       <label for="tntcLimit">TNTC Limit (in CFU)
           <input id="tntcLimit"
                 type="number"
-                v-model="tntcLimit" />
+                v-model="tntcLimit"
+                @input="updateData('Bioburden.tntcLimit', tntcLimit)" />
       </label>
       <label for="tftcLimit">TFTC Limit (in CFU)
           <input id="tftcLimit"
                 type="number"
-                v-model="tftcLimit" />
+                v-model="tftcLimit"
+                @input="updateData('Bioburden.tftcLimit', tftcLimit)" />
       </label>
     </div>
   </div>
@@ -48,6 +53,18 @@ export default {
       tntcTftcLimit: 'yes',
       tntcLimit: null,
       tftcLimit: null
+    }
+  },
+  props: {
+    updateData: {
+      type: Function
+    }
+  },
+  methods: {
+    toggleTntcTftc () {
+      this.updateData('Bioburden.tntcTftcLimit', this.tntcTftcLimit)
+      this.tntcLimit = null
+      this.tftcLimit = null
     }
   }
 }

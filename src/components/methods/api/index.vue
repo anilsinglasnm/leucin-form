@@ -3,12 +3,14 @@
     <label for="lod">LOD (in ppm)
         <input id="lod"
                type="number"
-               v-model="lod" />
+               v-model="lod"
+               @input="updateData('Api.lod', lod)" />
     </label>
     <label for="loq">LOQ (in ppm)
         <input id="loq"
                type="number"
-               v-model="loq" />
+               v-model="loq"
+               @input="updateData('Api.loq', loq)" />
     </label>
   </div>
 </template>
@@ -20,6 +22,11 @@ export default {
     return {
       lod: null,
       loq: null
+    }
+  },
+  props: {
+    updateData: {
+      type: Function
     }
   }
 }

@@ -21,9 +21,20 @@ export default {
   name: 'moc',
   data () {
     return {
-      mocTypes: ['Stainless Steel', 'Glass', 'Teflon', 'Plastic'],
+      allMocTypes: ['Stainless Steel', 'Glass', 'Teflon', 'Plastic'],
       selectedMocType: '',
       recovery: ''
+    }
+  },
+  props: ['selectedMocTypes'],
+  computed: {
+    mocTypes () {
+      return this.allMocTypes.filter(type => {
+        if (this.selectedMocTypes[type] && this.selectedMocType !== type) {
+          return false
+        }
+        return true
+      })
     }
   }
 }

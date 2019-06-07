@@ -6,7 +6,8 @@
     </button>
     <SwabRinse v-if="swab"
                name="swab"
-               :residueType="residueType" />
+               :residueType="residueType"
+               :updateData="updateData" />
 
     <button :class="['blue', {'red': rinse}]"
             @click="toggleSamplingForm('rinse')">
@@ -14,7 +15,8 @@
     </button>
     <SwabRinse v-if="rinse"
                name="rinse"
-               :residueType="residueType" />
+               :residueType="residueType"
+               :updateData="updateData" />
   </div>
 </template>
 
@@ -41,6 +43,9 @@ export default {
   props: {
     residueType: {
       type: String
+    },
+    updateData: {
+      type: Function
     }
   },
   methods: {
